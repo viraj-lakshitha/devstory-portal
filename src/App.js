@@ -4,6 +4,7 @@ import Header from "./components/Header/Header";
 import Login from "./layout/Profile/Login/Login";
 import SignUp from "./layout/Profile/SignUp/SignUp";
 import Home from "./layout/Home/Home";
+import PageNotFound from "./layout/404/PageNotFound";
 import "./App.scss";
 
 const App = () => {
@@ -14,8 +15,9 @@ const App = () => {
         <BrowserRouter>
           <Switch>
             <Route exact path="/" component={Home}></Route>
-            <Route exact path="/signup" component={SignUp}></Route>
-            <Route exact path="/login" component={Login}></Route>
+            <Route path="/signup" component={SignUp}></Route>
+            <Route path="/login" component={Login}></Route>
+            <Route component={PageNotFound}></Route>
           </Switch>
         </BrowserRouter>
       </div>

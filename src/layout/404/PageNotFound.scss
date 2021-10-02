@@ -1,0 +1,21 @@
+.page-not-found {
+    display        : flex;
+    justify-content: center;
+    align-items    : center;
+    flex-direction : column;
+    gap            : 50px;
+    min-height: calc(100vh - 90px);
+
+    img {
+        width : 700px;
+        height: auto;
+    }
+
+    &-button {
+        border          : none;
+        background-color: #5EAAA8;
+        color           : #fff;
+        padding         : 5px 10px 5px 10px;
+        border-radius   : 4px;
+    }
+}

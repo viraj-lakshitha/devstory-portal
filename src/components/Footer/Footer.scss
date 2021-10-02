@@ -1,10 +1,14 @@
 .footer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display         : flex;
+    justify-content : center;
+    align-items     : center;
     background-color: #5EAAA8;
-    min-height: 40px;
-    max-height: 40px;
-    border-radius: 10px 10px 0px 0px;
-    color: #fff;
+    min-height      : 40px;
+    max-height      : 40px;
+    border-radius   : 10px 10px 0px 0px;
+    color           : #fff;
+
+    p {
+        margin: 0px !important;
+    }
 }
