@@ -4,7 +4,7 @@ const Header = () => {
     return (
         <div className="header">
             <div className="header-brand">
-                <p>Dev-Story</p>
+                <p><a href="/">Dev-Story</a></p>
             </div>
             <div className="header-links"></div>
         </div>

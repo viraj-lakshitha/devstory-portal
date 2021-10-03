@@ -1,8 +1,8 @@
 import LoginImage from "../../../img/login/login.png";
 import FacebookImage from "../../../img/login/facebook.png";
 import GoogleImage from "../../../img/login/google.png";
-import "./Login.scss";
 import { Link } from "react-router-dom";
+import "./Login.scss";
 
 const Login = () => {
   return (
@@ -20,9 +20,8 @@ const Login = () => {
             <div className="login-right-container-form-item">
               <label
                 for="emailField"
-                className="login-right-container-form-item-label"
-              >
-                Email Address
+                className="login-right-container-form-item-label">
+                Email Address {/* <a>Invalid Email Address</a> */}
               </label>
               <input
                 type="email"
@@ -33,8 +32,7 @@ const Login = () => {
             <div className="login-right-container-form-item">
               <label
                 for="passwordField"
-                className="login-right-container-form-item-label"
-              >
+                className="login-right-container-form-item-label">
                 Password
               </label>
               <input
