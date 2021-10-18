@@ -1,10 +1,53 @@
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import axios from "axios";
+import { ACCESS_TOKEN } from "../../../utils/Constants";
 import LoginImage from "../../../img/login/login.png";
 import FacebookImage from "../../../img/login/facebook.png";
 import GoogleImage from "../../../img/login/google.png";
-import { Link } from "react-router-dom";
 import "./Login.scss";
 
 const Login = () => {
+  const initialValue = "";
+
+  const [username, setUsername] = useState(initialValue);
+  const [password, setPassword] = useState(initialValue);
+
+  const handleOnChange = (item, value) => {
+    switch (item) {
+      case "username":
+        setUsername(value);
+        break;
+      case "password":
+        setPassword(value);
+        break;
+      default:
+        console.error("Invalid!");
+    }
+  };
+
+  const handleOnSubmit = () => {
+    // Check for Input
+    if (username === initialValue || password === initialValue) {
+      console.log("Params cant be Empty!");
+    } else {
+      // Create Form
+      const formReq = {
+        username: username,
+        password: password,
+      };
+      console.log(formReq);
+      // Make a API call
+      axios.post("http://localhost:8081/auth/login", formReq)
+        .then((res) => {
+          localStorage.setItem(ACCESS_TOKEN, res?.data?.jwtToken);
+        })
+        .catch((err) => {
+          console.log("Something went wrong!");
+        });
+    }
+  };
+
   return (
     <div className="login container">
       <div className="login-left">
@@ -21,12 +64,15 @@ const Login = () => {
               <label
                 for="emailField"
                 className="login-right-container-form-item-label">
-                Email Address {/* <a>Invalid Email Address</a> */}
+                Username
               </label>
               <input
-                type="email"
+                type="text"
                 className="login-right-container-form-item-input"
-                id="emailField"
+                id="username"
+                onChange={(e) => {
+                  handleOnChange("username", e.target.value);
+                }}
               />
             </div>
             <div className="login-right-container-form-item">
@@ -38,11 +84,18 @@ const Login = () => {
               <input
                 type="password"
                 className="login-right-container-form-item-input"
-                id="passwordField"
+                id="password"
+                onChange={(e) => {
+                  handleOnChange("password", e.target.value);
+                }}
               />
             </div>
             <div>
-              <button className="login-right-container-form-action">
+              <button
+                onClick={() => {
+                  handleOnSubmit();
+                }}
+                className="login-right-container-form-action">
                 Login <i className="bi bi-lock"></i>
               </button>
             </div>

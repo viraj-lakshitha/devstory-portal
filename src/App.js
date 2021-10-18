@@ -10,6 +10,7 @@ import "./App.scss";
 const App = () => {
   return (
     <div className="app">
+      {console.error("Invalid Value!")}
       <Header />
       <div className="wrapper">
         <BrowserRouter>

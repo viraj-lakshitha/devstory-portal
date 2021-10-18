@@ -10,21 +10,21 @@ export const signUpFormData = [
       id: 2,
       name: "Username",
       type: "text",
-      itemId: "userName",
+      itemId: "username",
       errorMessage: "Username already used!"
     },
     {
       id: 3,
       name: "Email Address",
       type: "email",
-      itemId: "emailAddress",
+      itemId: "email",
       errorMessage: "Invalid email address"
     },
     {
       id: 4,
       name: "Password",
       type: "password",
-      itemId: "passwordOriginal",
+      itemId: "password",
       errorMessage: "Try with strong password"
     },
     {
@@ -41,7 +41,7 @@ export const signUpFormData = [
       id: 1,
       name: "Email",
       type: "email",
-      itemId: "emailAddress",
+      itemId: "email",
       errorMessage: "Invalid email address"
     },
     {
