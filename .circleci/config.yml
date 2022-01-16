@@ -1,0 +1,14 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node:14.17.2
+
+    steps:
+      - checkout
+      - run:
+          name: Install Packages
+          command: npm install
+      - run:
+          name: Build Project
+          command: npm run build
