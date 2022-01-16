@@ -1,5 +1,6 @@
 # DevStory - GlitchDev©️
 
+[![CircleCI](https://circleci.com/gh/viraj-lakshitha/devstory-portal/tree/develop.svg?style=svg)](https://circleci.com/gh/viraj-lakshitha/devstory-portal/tree/develop)
 
 * Design File (Figma) : https://www.figma.com/file/Ol2dCSdWS7jrAgphGmthVS/DevStory
 * Font (Google Fonts) : https://fonts.google.com/specimen/Roboto+Slab
