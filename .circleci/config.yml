@@ -10,7 +10,7 @@ jobs:
           command: |
             sudo apt-get update
             sudo apt install python3-pip
-            sudo apt install awsebcli --upgrade
+            sudo pip3 install awsebcli --upgrade
       - run:
           name: Install Packages
           command: npm install
