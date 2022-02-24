@@ -1,14 +1,28 @@
-version: 2
 jobs:
-  build:
-    docker:
-      - image: circleci/node:14.17.2
+  build_deploy:
+    machine: 
+      image: ubuntu-2004:202010-01
 
     steps:
       - checkout
+      - run: 
+          name: Install AWS CLI
+          command: |
+            sudo apt-get update
+            sudo apt install python3-pip
+            sudo pip3 install awsebcli --upgrade
       - run:
           name: Install Packages
           command: npm install
       - run:
           name: Build Project
           command: npm run build
+      - run:
+          name: Deploy to S3
+          command: aws s3 sync ./build s3://reactjs-test-project
+
+workflows:
+  version: 2
+  execute_bulk:
+    jobs:
+      - build_deploy
