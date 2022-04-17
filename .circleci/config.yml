@@ -17,9 +17,9 @@ jobs:
       - run:
           name: Build Project
           command: npm run build
-      - run:
-          name: Deploy to S3
-          command: aws s3 sync ./build s3://reactjs-test-project
+#       - run:
+#           name: Deploy to S3
+#           command: aws s3 sync ./build s3://reactjs-test-project
 
 workflows:
   version: 2
