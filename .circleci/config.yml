@@ -17,12 +17,23 @@ jobs:
       - run:
           name: Build Project
           command: npm run build
-#       - run:
-#           name: Deploy to S3
-#           command: aws s3 sync ./build s3://reactjs-test-project
+  
+  ui_test:
+    machine: 
+      image: ubuntu-2004:202010-01
+
+    steps:
+      - checkout
+      - run: 
+          name: Install Cypress
+          command: npm install cypress
+      - run:
+          name: Run Cypress (In Headless)
+          command: npx cypress run --headless
 
 workflows:
   version: 2
   execute_bulk:
     jobs:
+      - ui_test
       - build_deploy
