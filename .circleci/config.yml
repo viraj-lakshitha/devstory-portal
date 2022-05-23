@@ -33,8 +33,7 @@ jobs:
           command: npm run build
   ui_test:
     docker:
-      - image: vitiya99/react-base:1.0.0
-
+      - image: vitiya99/react-base:1.0.1
     steps:
       - checkout
       - run:
