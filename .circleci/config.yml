@@ -1,16 +1,10 @@
+version: 2
 jobs:
-  build_deploy:
+  dev-build:
     docker: 
-      image: vitiya99/react-base:1.0.0
-
+      - image: vitiya99/react-base:1.0.0
     steps:
       - checkout
-      - run: 
-          name: Install AWS CLI
-          command: |
-            sudo apt-get update
-            sudo apt install python3-pip
-            sudo pip3 install awsebcli --upgrade
       - run:
           name: Install Packages
           command: npm install
@@ -18,22 +12,18 @@ jobs:
           name: Build Project
           command: npm run build
   
-  ui_test:
+  dev-test:
     docker: 
-      image: vitiya99/react-base:1.0.0
-
+      - image: cypress/base:latest
     steps:
       - checkout
-      - run: 
-          name: Install Cypress
-          command: npm install cypress
       - run:
           name: Run Cypress (In Headless)
           command: npx cypress run --headless
 
 workflows:
   version: 2
-  execute_bulk:
+  devstory-deployment:
     jobs:
-      - ui_test
-      - build_deploy
+      - dev-test
+      - dev-build
