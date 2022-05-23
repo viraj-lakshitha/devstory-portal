@@ -6,10 +6,11 @@ workflows:
   heroku_deploy:
     jobs:
       - build
-      - ui_test
+      - ui-test
       - heroku/deploy-via-git:
           requires:
             - build
+            - ui-test
           filters:
             branches:
               only: develop
@@ -31,7 +32,7 @@ jobs:
       - run:
           name: Run project
           command: npm run build
-  ui_test:
+  ui-test:
     docker:
       - image: vitiya99/react-base:1.0.1
     steps:
