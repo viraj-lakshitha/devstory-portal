@@ -2,7 +2,7 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: vitiya99/react-base:1.0.1
+      - image: vitiya99/react-base:1.0.0
         auth:
           username: $DOCKER_USERNAME
           password: $DOCKER_PASSWORD
@@ -14,7 +14,7 @@ jobs:
 
   test:
     docker:
-      - image: vitiya99/react-base:1.0.1
+      - image: vitiya99/react-base:1.0.0
         auth:
           username: $DOCKER_USERNAME
           password: $DOCKER_PASSWORD
