@@ -1,39 +1,30 @@
 version: 2.1
-orbs:
-  heroku: circleci/heroku@0.0.10
-workflows:
-  devstory-deploy:
-    jobs:
-      - build
-      - test
-      - heroku/deploy-via-git:
-          requires:
-            - build
-            - test
-          filters:
-            branches:
-              only: develop
 jobs:
   build:
     docker:
       - image: vitiya99/react-base:1.0.1
     steps:
       - checkout
-      - restore_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
       - run: |
           npm install
           npm run build
-      - save_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
-          paths:
-            - ./node_modules
-jobs:            
+          npm install cypress
+          npx cypress run --headless
+
   test:
     docker:
-      - image: vitiya99/react-base:1.0.1
+        - image: vitiya99/react-base:1.0.1
     steps:
       - checkout
       - run: |
-          npm cypress
+          npm install
+          npm run build
+          npm install cypress
           npx cypress run --headless
+          
+
+workflows:
+  devstory-deployment:
+    jobs:
+      - build
+      - test
