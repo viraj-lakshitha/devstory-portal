@@ -1,39 +1,39 @@
-jobs:
-  build_deploy:
-    docker: 
-      image: vitiya99/react-base:1.0.0
-
-    steps:
-      - checkout
-      - run: 
-          name: Install AWS CLI
-          command: |
-            sudo apt-get update
-            sudo apt install python3-pip
-            sudo pip3 install awsebcli --upgrade
-      - run:
-          name: Install Packages
-          command: npm install
-      - run:
-          name: Build Project
-          command: npm run build
-  
-  ui_test:
-    docker: 
-      image: vitiya99/react-base:1.0.0
-
-    steps:
-      - checkout
-      - run: 
-          name: Install Cypress
-          command: npm install cypress
-      - run:
-          name: Run Cypress (In Headless)
-          command: npx cypress run --headless
-
+version: 2.1
+orbs:
+  node: circleci/node@4.1.0
+  heroku: circleci/heroku@0.0.10
 workflows:
-  version: 2
-  execute_bulk:
+  devstory-deploy:
     jobs:
-      - ui_test
-      - build_deploy
+      - build
+      - test
+      - heroku/deploy-via-git:
+          requires:
+            - build
+            - test
+          filters:
+            branches:
+              only: develop
+jobs:
+  build:
+    docker:
+      - image: vitiya99/react-base:1.0.1
+    steps:
+      - checkout
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+      - run: |
+          npm install
+          npm run build
+      - save_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - ./node_modules
+  test:
+    docker:
+      - image: vitiya99/react-base:1.0.1
+    steps:
+      - checkout
+      - run: |
+          npm cypress
+          npx cypress run --headless
