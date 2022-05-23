@@ -3,22 +3,24 @@ jobs:
   build:
     docker:
       - image: vitiya99/react-base:1.0.1
+        auth:
+          username: $DOCKER_USERNAME
+          password: $DOCKER_PASSWORD
     steps:
       - checkout
       - run: |
           npm install
           npm run build
-          npm install cypress
-          npx cypress run --headless
 
   test:
     docker:
-        - image: vitiya99/react-base:1.0.1
+      - image: vitiya99/react-base:1.0.1
+        auth:
+          username: $DOCKER_USERNAME
+          password: $DOCKER_PASSWORD
     steps:
       - checkout
       - run: |
-          npm install
-          npm run build
           npm install cypress
           npx cypress run --headless
           
