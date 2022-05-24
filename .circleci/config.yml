@@ -18,6 +18,9 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Install Cypress
+          command: npm install cypress
+      - run:
           name: Run Cypress (In Headless)
           command: npx cypress run --headless
 
