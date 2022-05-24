@@ -2,7 +2,7 @@ version: 2
 jobs:
   dev-build:
     docker: 
-      - image: vitiya99/react-base:1.0.0
+      - image: vitiya99/react-base:1.0.1
     steps:
       - checkout
       - run:
@@ -14,7 +14,7 @@ jobs:
   
   dev-test:
     docker: 
-      - image: cypress/base:latest
+      - image: vitiya99/react-base:1.0.1
     steps:
       - checkout
       - run:
