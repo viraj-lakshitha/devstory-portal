@@ -1,8 +1,12 @@
 /// <reference types="cypress" />
 
+import { slowCypressDown } from "cypress-slow-down"
+
+slowCypressDown(500) // Remove if you don't want to slow down the cypress automation 
+
 describe('Test Login Functionality', () => {
   beforeEach(() => {
-    cy.visit("https://devstory-portal.herokuapp.com/login")
+    cy.visit("http://localhost:3000/login")
     cy.url().then(value => {
       cy.log("Current URL", value)
     })
