@@ -1,8 +1,8 @@
 /// <reference types="cypress" />
 
-import { slowCypressDown } from "cypress-slow-down"
-
-slowCypressDown(500) // Remove if you don't want to slow down the cypress automation 
+// Uncomment following two lines, if you want to slow done the UI automation
+// import { slowCypressDown } from "cypress-slow-down"
+// slowCypressDown(500)
 
 describe('Test Login Functionality', () => {
   beforeEach(() => {
